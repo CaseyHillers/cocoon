@@ -14,7 +14,7 @@ import 'package:app_flutter/state/flutter_build.dart';
 class FakeFlutterBuildState extends ChangeNotifier
     implements FlutterBuildState {
   @override
-  GoogleSignInService authService = GoogleSignInService();
+  GoogleSignInService signInService = GoogleSignInService();
 
   @override
   Timer refreshTimer;

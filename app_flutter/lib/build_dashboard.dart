@@ -105,7 +105,7 @@ class BuildDashboard extends StatelessWidget {
           title: statusTable[buildState.isTreeBuilding],
           backgroundColor: colorTable[buildState.isTreeBuilding],
           actions: <Widget>[
-            SignInButton(authService: buildState.authService),
+            SignInButton(signInService: buildState.signInService),
           ],
         ),
         body: Column(

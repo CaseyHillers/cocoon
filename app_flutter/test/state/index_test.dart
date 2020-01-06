@@ -11,29 +11,29 @@ import 'package:app_flutter/state/index.dart';
 void main() {
   group('IndexState', () {
     IndexState indexState;
-    MockGoogleSignInService mockAuthService;
+    MockGoogleSignInService mockSignInService;
 
     setUp(() {
-      mockAuthService = MockGoogleSignInService();
-      indexState = IndexState(authServiceValue: mockAuthService);
+      mockSignInService = MockGoogleSignInService();
+      indexState = IndexState(signInServiceValue: mockSignInService);
     });
 
     tearDown(() {
-      clearInteractions(mockAuthService);
+      clearInteractions(mockSignInService);
     });
 
     testWidgets('auth functions forward to google sign in service',
         (WidgetTester tester) async {
-      verifyNever(mockAuthService.signIn());
-      verifyNever(mockAuthService.signOut());
+      verifyNever(mockSignInService.signIn());
+      verifyNever(mockSignInService.signOut());
 
       await indexState.signIn();
 
-      verify(mockAuthService.signIn()).called(1);
-      verifyNever(mockAuthService.signOut());
+      verify(mockSignInService.signIn()).called(1);
+      verifyNever(mockSignInService.signOut());
 
       await indexState.signOut();
-      verify(mockAuthService.signOut()).called(1);
+      verify(mockSignInService.signOut()).called(1);
     });
   });
 }

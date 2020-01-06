@@ -39,7 +39,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SignInButton(
-          authService: mockAuthService,
+          signInService: mockAuthService,
         ),
       ),
     );
@@ -58,7 +58,7 @@ void main() {
       Directionality(
         textDirection: TextDirection.ltr,
         child: SignInButton(
-          authService: mockAuthService,
+          signInService: mockAuthService,
         ),
       ),
     );
@@ -83,7 +83,7 @@ void main() {
       MaterialApp(
         home: AppBar(
           leading: SignInButton(
-            authService: mockAuthService,
+            signInService: mockAuthService,
           ),
         ),
       ),
@@ -111,7 +111,7 @@ void main() {
       MaterialApp(
         home: AppBar(
           leading: SignInButton(
-            authService: mockAuthService,
+            signInService: mockAuthService,
           ),
         ),
       ),

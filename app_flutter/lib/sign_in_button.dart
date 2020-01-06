@@ -13,17 +13,17 @@ import 'service/google_sign_in.dart';
 /// If logged in, it will display the user's avatar. Clicking it opens a dropdown for logging out.
 /// Otherwise, a sign in button will show.
 class SignInButton extends StatelessWidget {
-  const SignInButton({@required this.authService, Key key}) : super(key: key);
+  const SignInButton({@required this.signInService, Key key}) : super(key: key);
 
-  final GoogleSignInService authService;
+  final GoogleSignInService signInService;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<bool>(
-      future: authService.isAuthenticated,
+      future: signInService.isAuthenticated,
       builder: (_, AsyncSnapshot<bool> isAuthenticated) {
         /// On sign out, there's a second where the user is null before isAuthenticated catches up.
-        if (isAuthenticated.data == true && authService.user != null) {
+        if (isAuthenticated.data == true && signInService.user != null) {
           return PopupMenuButton<String>(
             // TODO(chillers): Show a Network Image. https://github.com/flutter/flutter/issues/45955
             // CanvasKit currently cannot render a NetworkImage because of CORS issues.
@@ -36,7 +36,7 @@ class SignInButton extends StatelessWidget {
                 padding: const EdgeInsets.only(right: 10.0),
               ),
               // TODO(chillers): Switch to use avatar widget provided by google_sign_in plugin
-              other: Image.network(authService.user?.photoUrl),
+              other: Image.network(signInService.user?.photoUrl),
             ),
             offset: const Offset(0, 50),
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
@@ -47,7 +47,7 @@ class SignInButton extends StatelessWidget {
             ],
             onSelected: (String value) {
               if (value == 'logout') {
-                authService.signOut();
+                signInService.signOut();
               }
             },
           );
@@ -57,7 +57,7 @@ class SignInButton extends StatelessWidget {
             'Sign in',
             style: TextStyle(color: Colors.white),
           ),
-          onPressed: () => authService.signIn(),
+          onPressed: () => signInService.signIn(),
         );
       },
     );

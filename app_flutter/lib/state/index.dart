@@ -15,20 +15,20 @@ class IndexState extends ChangeNotifier {
   ///
   /// If [CocoonService] is not specified, a new [CocoonService] instance is created.
   IndexState({
-    GoogleSignInService authServiceValue,
+    GoogleSignInService signInServiceValue,
   }) {
-    authService = authServiceValue ??
+    signInService = signInServiceValue ??
         GoogleSignInService(notifyListeners: notifyListeners);
   }
 
   /// Authentication service for managing Google Sign In.
-  GoogleSignInService authService;
+  GoogleSignInService signInService;
 
   /// A [ChangeNotifer] for knowing when errors occur that relate to this [IndexState].
   IndexStateErrors errors = IndexStateErrors();
 
-  Future<void> signIn() => authService.signIn();
-  Future<void> signOut() => authService.signOut();
+  Future<void> signIn() => signInService.signIn();
+  Future<void> signOut() => signInService.signOut();
 }
 
 class IndexStateErrors extends ChangeNotifier {

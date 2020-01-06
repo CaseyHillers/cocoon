@@ -18,9 +18,9 @@ class FlutterBuildState extends ChangeNotifier {
   /// If [CocoonService] is not specified, a new [CocoonService] instance is created.
   FlutterBuildState({
     CocoonService cocoonServiceValue,
-    GoogleSignInService authServiceValue,
+    GoogleSignInService signInServiceValue,
   }) : _cocoonService = cocoonServiceValue ?? CocoonService() {
-    authService = authServiceValue ??
+    signInService = signInServiceValue ??
         GoogleSignInService(notifyListeners: notifyListeners);
   }
 
@@ -28,7 +28,7 @@ class FlutterBuildState extends ChangeNotifier {
   final CocoonService _cocoonService;
 
   /// Authentication service for managing Google Sign In.
-  GoogleSignInService authService;
+  GoogleSignInService signInService;
 
   /// How often to query the Cocoon backend for the current build state.
   @visibleForTesting
@@ -101,16 +101,16 @@ class FlutterBuildState extends ChangeNotifier {
     ]);
   }
 
-  Future<void> signIn() => authService.signIn();
-  Future<void> signOut() => authService.signOut();
+  Future<void> signIn() => signInService.signIn();
+  Future<void> signOut() => signInService.signOut();
 
   Future<bool> rerunTask(Task task) async {
-    return _cocoonService.rerunTask(task, await authService.idToken);
+    return _cocoonService.rerunTask(task, await signInService.idToken);
   }
 
   Future<bool> downloadLog(Task task, Commit commit) async {
     return _cocoonService.downloadLog(
-        task, await authService.idToken, commit.sha);
+        task, await signInService.idToken, commit.sha);
   }
 
   @override
