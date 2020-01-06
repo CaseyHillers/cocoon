@@ -183,13 +183,13 @@ Future<void> main(List<String> arguments) async {
   /// Clean up previous build files to ensure the latest files are deployed.
   await Process.run('rm', <String>['-rf', 'build/']);
 
-  if (!await _copyFlutterApp()) {
-    stderr.writeln('Failed to copy Flutter app over');
+  if (!await _copyAngularDartProject()) {
+    stderr.writeln('Failed to copy Angular Dart project over');
     exit(1);
   }
 
-  if (!await _copyAngularDartProject()) {
-    stderr.writeln('Failed to copy Angular Dart project over');
+  if (!await _copyFlutterApp()) {
+    stderr.writeln('Failed to copy Flutter app over');
     exit(1);
   }
 
