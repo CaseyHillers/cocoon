@@ -6,7 +6,7 @@ import 'package:app_flutter/canvaskit_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-import 'service/google_authentication.dart';
+import 'service/google_sign_in.dart';
 
 /// Widget for displaying sign in information for the current user.
 ///

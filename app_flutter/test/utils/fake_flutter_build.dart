@@ -8,7 +8,7 @@ import 'package:flutter/foundation.dart';
 
 import 'package:cocoon_service/protos.dart' show Commit, CommitStatus, Task;
 
-import 'package:app_flutter/service/google_authentication.dart';
+import 'package:app_flutter/service/google_sign_in.dart';
 import 'package:app_flutter/state/flutter_build.dart';
 
 class FakeFlutterBuildState extends ChangeNotifier

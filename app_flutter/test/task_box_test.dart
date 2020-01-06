@@ -10,7 +10,7 @@ import 'package:mockito/mockito.dart';
 
 import 'package:cocoon_service/protos.dart' show Commit, Task;
 
-import 'package:app_flutter/service/google_authentication.dart';
+import 'package:app_flutter/service/google_sign_in.dart';
 import 'package:app_flutter/state/flutter_build.dart';
 import 'package:app_flutter/task_attempt_summary.dart';
 import 'package:app_flutter/task_box.dart';

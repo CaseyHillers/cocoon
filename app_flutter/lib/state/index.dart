@@ -7,7 +7,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 
 import '../service/cocoon.dart';
-import '../service/google_authentication.dart';
+import '../service/google_sign_in.dart';
 
 /// State for the index page
 class IndexState extends ChangeNotifier {

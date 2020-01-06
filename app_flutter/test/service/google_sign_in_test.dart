@@ -6,7 +6,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import 'package:app_flutter/service/google_authentication.dart';
+import 'package:app_flutter/service/google_sign_in.dart';
 
 import '../utils/fake_google_account.dart';
 
