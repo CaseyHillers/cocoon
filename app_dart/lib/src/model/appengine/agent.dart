@@ -5,6 +5,8 @@
 import 'package:gcloud/db.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../proto/internal/agent.dart' as AgentProto;
+import '../proto/proto_model.dart';
 import 'task.dart';
 
 part 'agent.g.dart';
@@ -12,7 +14,7 @@ part 'agent.g.dart';
 /// Class that represents a worker capable of running tasks.
 @JsonSerializable(createFactory: false, ignoreUnannotated: true)
 @Kind(name: 'Agent', idType: IdType.String)
-class Agent extends Model {
+class Agent extends ProtoModel<AgentProto> {
   /// Creates a new [Agent].
   Agent({
     Key key,
@@ -109,5 +111,11 @@ class Agent extends Model {
       ..write(', capabilities: $capabilities')
       ..write(')');
     return buf.toString();
+  }
+
+  @override
+  AgentProto toProto() {
+    // TODO: implement toProto
+    throw UnimplementedError();
   }
 }

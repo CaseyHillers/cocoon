@@ -59,10 +59,15 @@ Future<void> main() async {
         delegate: GetBenchmarks(config),
         ttl: const Duration(minutes: 15),
       ),
-      '/api/public/get-status': CacheRequestHandler<Body>(
+      '/api/public/get-commit-statuses': CacheRequestHandler<Body>(
         cache: cache,
         config: config,
-        delegate: GetStatus(config),
+        delegate: GetCommitStatuses(config),
+      ),
+      '/api/public/get-agents': CacheRequestHandler<Body>(
+        cache: cache,
+        config: config,
+        delegate: GetAgents(config),
       ),
       '/api/public/get-timeseries-history': GetTimeSeriesHistory(config),
     };
