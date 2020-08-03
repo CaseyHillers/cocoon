@@ -156,8 +156,12 @@ class _TaskGridState extends State<TaskGrid> {
             if (_statusScores.containsKey(task.status)) {
               score += _statusScores[task.status];
             }
+            /// Task flakiness is a separate field from status, and must be manually handled.
+            /// Flakiness should be made aware of after failures and underperformed tasks as
+            /// they are tasks run on infra, but are not blocking the tree.
             if (task.isFlaky) {
               score /= 2.0;
+              score += 1.0;
             }
             score /= commitCount;
             scores.update(
