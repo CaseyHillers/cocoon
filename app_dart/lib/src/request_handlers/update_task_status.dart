@@ -155,10 +155,10 @@ class UpdateTaskStatus extends ApiRequestHandler<UpdateTaskStatusResponse> {
   /// To lookup the value, we construct the ancestor key, which corresponds to the [Commit].
   /// Then we query the tasks with that ancestor key and search for the one that matches the builder name.
   Future<Task> _getTaskFromNamedParams(DatastoreService datastore) async {
-    final Key commitKey = await _constructCommitKey(datastore);
+    final Commit commit = await _findCommit(datastore);
 
     final String builderName = requestData[builderNameParam] as String;
-    final Query<Task> query = datastore.db.query<Task>(ancestorKey: commitKey);
+    final Query<Task> query = datastore.db.query<Task>(ancestorKey: commit.key);
     final List<Task> initialTasks = await query.run().toList();
     log.debug('Found ${initialTasks.length} tasks for commit');
     final List<Task> tasks = <Task>[];
@@ -180,8 +180,9 @@ class UpdateTaskStatus extends ApiRequestHandler<UpdateTaskStatusResponse> {
   /// Construct the Datastore key for [Commit] that is the ancestor to this [Task].
   ///
   /// Throws [BadRequestException] if the given git branch does not exist in [CocoonConfig].
-  Future<Key> _constructCommitKey(DatastoreService datastore) async {
+  Future<Commit> _findCommit(DatastoreService datastore) async {
     final String gitBranch = requestData[gitBranchParam] as String;
+    final String gitSha = requestData[gitShaParam] as String;
     final List<String> flutterBranches = await config.flutterBranches;
     if (!flutterBranches.contains(gitBranch)) {
       throw BadRequestException('Failed to find flutter/flutter branch: $gitBranch\n'
@@ -191,13 +192,12 @@ class UpdateTaskStatus extends ApiRequestHandler<UpdateTaskStatusResponse> {
     // It is sub-optimal to scan the most recent commits from Datastore for the key needed. Ideally, we can
     // construct commit key for lookup, but that fails in prod. See https://github.com/flutter/flutter/issues/71749
     final List<Commit> recentCommits = await datastore.queryRecentCommits(branch: gitBranch).toList();
-    for (Commit commit in recentCommits) {
-      if (commit.sha == requestData[gitShaParam]) {
-        return commit.key;
-      }
-    }
-    final String id = 'flutter/flutter/$gitBranch/${requestData[gitShaParam]}';
-    throw BadRequestException('No such commit: $id');
+    log.debug('Scanning last ${recentCommits.length} commits for $gitSha');
+    return recentCommits.singleWhere((Commit commit) => commit.sha == gitSha, orElse: () {
+      final String id = 'flutter/flutter/$gitBranch/$gitSha';
+      throw BadRequestException('No such commit: $id');
+    });
+
   }
 
   Future<void> _insertBigquery(Commit commit, Task task) async {
