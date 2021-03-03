@@ -7,5 +7,6 @@ export 'internal/build_status_response.pb.dart';
 export 'internal/commit.pb.dart';
 export 'internal/commit_status.pb.dart';
 export 'internal/key.pb.dart';
+export 'internal/requests/schedule_postsubmit.pb.dart';
 export 'internal/stage.pb.dart';
 export 'internal/task.pb.dart';

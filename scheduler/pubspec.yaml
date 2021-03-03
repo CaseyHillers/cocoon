@@ -1,0 +1,33 @@
+# Copyright 2019 The Flutter Authors. All rights reserved.
+# Use of this source code is governed by a BSD-style license that can be
+# found in the LICENSE file.
+
+name: cocoon_scheduler
+homepage: https://github.com/flutter/cocoon
+publish_to: none
+
+environment:
+  sdk: '>=2.5.0 <3.0.0'
+
+dependencies:
+  appengine: ^0.11.0
+  collection: ^1.14.11
+  cocoon_service:
+    path: ../app_dart
+  dbcrypt: ^1.0.0
+  fixnum: ^0.10.9
+  gcloud: ^0.7.3
+  github: ^7.0.1
+  graphql: ^2.1.0
+  http: ^0.12.0
+  meta: ^1.1.7
+  mime: ^0.9.0
+  protobuf: ^1.0.0
+  truncate: ^2.1.2
+  yaml: ^2.1.16
+
+
+dev_dependencies:
+  mockito: ^4.1.0
+  test: ^1.6.5
+

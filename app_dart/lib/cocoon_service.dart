@@ -3,6 +3,9 @@
 // found in the LICENSE file.
 
 export 'src/datastore/cocoon_config.dart';
+export 'src/foundation/providers.dart';
+export 'src/foundation/typedefs.dart';
+export 'src/foundation/utils.dart';
 export 'src/model/appengine/service_account_info.dart';
 export 'src/request_handlers/append_log.dart';
 export 'src/request_handlers/authorize_agent.dart';
@@ -34,6 +37,7 @@ export 'src/request_handlers/update_benchmark_targets.dart';
 export 'src/request_handlers/update_task_status.dart';
 export 'src/request_handlers/update_timeseries.dart';
 export 'src/request_handlers/vacuum-clean.dart';
+export 'src/request_handling/api_request_handler.dart';
 export 'src/request_handling/authentication.dart';
 export 'src/request_handling/body.dart';
 export 'src/request_handling/cache_request_handler.dart';
@@ -44,6 +48,7 @@ export 'src/request_handling/swarming_authentication.dart';
 export 'src/service/access_token_provider.dart';
 export 'src/service/buildbucket.dart';
 export 'src/service/cache_service.dart';
+export 'src/service/datastore.dart';
 export 'src/service/github_checks_service.dart';
 export 'src/service/github_status_service.dart';
 export 'src/service/luci_build_service.dart';
