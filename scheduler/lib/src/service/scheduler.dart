@@ -12,7 +12,6 @@ import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
 
 import 'package:cocoon_service/cocoon_service.dart';
-import 'package:cocoon_service/protos.dart';
 
 /// Scheduler service to validate all commits to supported Flutter repositories.
 ///
