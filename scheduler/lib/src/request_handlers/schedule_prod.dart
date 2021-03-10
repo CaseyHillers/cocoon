@@ -7,14 +7,14 @@ import 'dart:async';
 import 'package:meta/meta.dart';
 
 import 'package:cocoon_service/cocoon_service.dart';
-import 'package:cocoon_service/protos.dart';
+import 'package:cocoon_service/models.dart';
 
 import '../service/scheduler.dart';
 
-/// Schedule tasks from [SchedulePostsubmitRequest].
+/// Schedule tasks from a [ScheduleProdRequest].
 @immutable
-class SchedulePostsubmit extends ApiRequestHandler<Body> {
-  const SchedulePostsubmit(
+class ScheduleProd extends ApiRequestHandler<Body> {
+  const ScheduleProd(
     Config config,
     AuthenticationProvider authenticationProvider, {
     @visibleForTesting this.datastoreProvider = DatastoreService.defaultProvider,
@@ -31,7 +31,8 @@ class SchedulePostsubmit extends ApiRequestHandler<Body> {
   @override
   Future<Body> post() async {
     final DatastoreService datastore = datastoreProvider(config.db);
-    final SchedulePostsubmitRequest schedulePostsubmitRequest = SchedulePostsubmitRequest.fromBuffer(requestBody);
+    final ScheduleProdTasksRequest request = ScheduleProdTasksRequest.fromJson(requestData);
+    final List<Commit> commits = request.commits.map((SerializableCommit serialized) => serialized.commit);
 
     final Scheduler scheduler = Scheduler(
         config: config,
@@ -39,7 +40,7 @@ class SchedulePostsubmit extends ApiRequestHandler<Body> {
         httpClient: httpClientProvider(),
         gitHubBackoffCalculator: gitHubBackoffCalculator,
         log: log);
-    await scheduler.addCommits(schedulePostsubmitRequest.commits);
+    await scheduler.addCommits(commits);
 
     return Body.empty;
   }

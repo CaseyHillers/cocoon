@@ -12,6 +12,7 @@ import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
 
 import 'package:cocoon_service/cocoon_service.dart';
+import 'package:cocoon_service/models.dart' show Commit, Manifest, ManifestTask, Task;
 
 /// Scheduler service to validate all commits to supported Flutter repositories.
 ///

@@ -7,4 +7,4 @@ env: flex
 service: scheduler
 
 resources:
-  memory_gb: 2.0
+  memory_gb: 4.0
