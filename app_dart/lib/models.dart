@@ -3,7 +3,5 @@
 // found in the LICENSE file.
 
 export 'src/model/appengine/commit.dart';
-export 'src/model/appengine/key_converter.dart';
-export 'src/model/appengine/key_helper.dart';
-export 'src/model/appengine/task.dart';
-export 'src/model/requests/schedule_postsubmit.dart';
+export 'src/model/appengine/rpc/schedule_prod.dart';
+
