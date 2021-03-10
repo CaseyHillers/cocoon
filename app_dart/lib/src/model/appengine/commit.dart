@@ -88,6 +88,22 @@ class Commit extends Model<String> {
 class SerializableCommit {
   const SerializableCommit(this.commit);
 
+  factory SerializableCommit.fromJson(Map<String, dynamic> json) {
+    final Map<String, dynamic> checklistJson = json['Checklist'] as Map<String, dynamic>;
+    return SerializableCommit(
+      Commit(
+        key: const StringKeyConverter().fromJson(json['Key'] as String),
+        repository: checklistJson['FlutterRepositoryPath'] as String,
+        timestamp: checklistJson['CreateTimestamp'] as int,
+        sha: checklistJson['Commit']['Sha'] as String,
+        message: checklistJson['Commit']['Message'] as String,
+        author: checklistJson['Commit']['Author']['Login'] as String,
+        authorAvatarUrl: checklistJson['Commit']['Author']['avatar_url'] as String,
+        branch: checklistJson['Branch'] as String,
+      )
+    );
+  }
+
   final Commit commit;
 
   @JsonKey(name: 'Key')

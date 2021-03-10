@@ -26,6 +26,7 @@ import 'datastore.dart';
 ///   1. Tracking commits in Cocoon
 ///   2. Ensuring commits are validated (via scheduling tasks against commits)
 ///   3. Retry mechanisms for tasks
+// TODO(chillers): Remove this file when scheduler microservice is serving prod requests. https://github.com/flutter/flutter/issues/76140
 class Scheduler {
   Scheduler({
     @required this.config,

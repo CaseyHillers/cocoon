@@ -12,8 +12,9 @@ ScheduleProdTasksRequest _$ScheduleProdTasksRequestFromJson(
     Map<String, dynamic> json) {
   return ScheduleProdTasksRequest(
     commits: (json['commits'] as List)
-        ?.map((e) =>
-            e == null ? null : Commit.fromJson(e as Map<String, dynamic>))
+        ?.map((e) => e == null
+            ? null
+            : SerializableCommit.fromJson(e as Map<String, dynamic>))
         ?.toSet(),
   );
 }

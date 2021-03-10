@@ -4,7 +4,7 @@
 
 import 'package:json_annotation/json_annotation.dart';
 
-import '../commit.dart';
+import '../appengine/commit.dart';
 
 part 'schedule_prod.g.dart';
 
@@ -18,7 +18,7 @@ class ScheduleProdTasksRequest {
 
   factory ScheduleProdTasksRequest.fromJson(Map<String, dynamic> json) => _$ScheduleProdTasksRequestFromJson(json);
 
-  final Set<Commit> commits;
+  final Set<SerializableCommit> commits;
 
   Map<String, dynamic> toJson() => _$ScheduleProdTasksRequestToJson(this);
 }
