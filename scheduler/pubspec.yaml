@@ -13,7 +13,9 @@ dependencies:
   appengine: ^0.11.0
   collection: ^1.14.11
   cocoon_service:
-    path: ../app_dart
+    git:
+      url: git@github.com:flutter/cocoon.git
+      path: app_dart
   dbcrypt: ^1.0.0
   fixnum: ^0.10.9
   gcloud: ^0.7.3
